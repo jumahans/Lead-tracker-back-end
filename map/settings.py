@@ -27,14 +27,14 @@ except ImportError:
 
 # Environment variables with defaults
 DEBUG = os.getenv("DEBUG", "True") == "True"
-MAP_API_KEY = os.getenv("MAP_API_KEY", "your_serpapi_key_here")
+MAP_API_KEY = os.getenv("MAP_API_KEY")
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY", 'django-insecure-sbuovq$(xf+%sw8cs7pd8(t!k)^&b8zc3s4)3ced15!9-qbc*0')
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True  # This is now set above from environment

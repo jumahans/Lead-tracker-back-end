@@ -39,7 +39,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True  # This is now set above from environment
 
-ALLOWED_HOSTS = ['localhost', 'https://jumahans.github.io/Lead-tracker-front-end/']
+ALLOWED_HOSTS = ["*"]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

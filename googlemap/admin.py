@@ -16,6 +16,13 @@ class LeaddAdmin(admin.ModelAdmin):
 
 @admin.register(CallStatus)
 class CallStatusAdmin(admin.ModelAdmin):
-    list_display = ["lead__freelancer", 'lead', 'called']
-    # list_filter = ['freelancer']
+    list_display = ['get_freelancer', 'lead', 'called']
     list_filter = ['called']
+
+    def get_freelancer(self, obj):
+        if obj.lead and obj.lead.freelancer:
+            return obj.lead.freelancer
+        return '-'
+    
+    get_freelancer.short_description = 'Freelancer'  # Column header in admin
+    get_freelancer.admin_order_field = 'lead__freelancer'  # Enables sorting by freelancer

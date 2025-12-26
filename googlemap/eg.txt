@@ -1,0 +1,38 @@
+# googlemap/views.py
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status as drf_status
+from .models import CallStatus, Freelancer, Lead
+from .serializers import CallStatusSerializer
+
+@api_view(['GET', 'POST'])
+def call_status_view(request):
+    if request.method == 'GET':
+        # return choices for the dropdown / buttons
+        choices = [
+            {"value": key, "label": label}
+            for key, label in CallStatus.STATUS_CHOICES
+        ]
+        return Response(choices)
+
+    if request.method == 'POST':
+        serializer = CallStatusSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=drf_status.HTTP_400_BAD_REQUEST)
+
+        freelancer_id = serializer.validated_data.get("freelancer").id
+        lead_id = serializer.validated_data.get("lead").id
+        status_value = serializer.validated_data.get("status")
+
+        # update or create record
+        call_status, _ = CallStatus.objects.update_or_create(
+            freelancer_id=freelancer_id,
+            lead_id=lead_id,
+            defaults={"status": status_value}
+        )
+
+        return Response(
+            CallStatusSerializer(call_status).data,
+            status=drf_status.HTTP_200_OK
+        )

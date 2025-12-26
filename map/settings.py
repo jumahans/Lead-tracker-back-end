@@ -38,7 +38,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", 'django-insecure-sbuovq$(xf+%sw8cs7pd8(t!k)
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True  # This is now set above from environment
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['localhost', 'https://jumahans.github.io/Lead-tracker-front-end/']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
